@@ -1,0 +1,131 @@
+:root {
+  --dark: #374151;
+  --darker: #1F2937;
+  --darkest: #111827;
+  --gray: #6b7280;
+  --light: #EEE;
+  --pink: #EC4899;
+  --purple: #8B5CF6;
+  --teal: #05acff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Fira sans', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--dark);
+}
+
+header {
+  padding: 2rem 0rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 3.0rem;
+  font-weight: 300;
+  color: var(--pink);
+}
+
+#password-checker-form {
+  display: flex;
+}
+
+input button {
+  appearance: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  font-size: 1.5rem;
+  background-image: linear-gradient(to right, var(--purple), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: .5rem;
+}
+
+#password-input {
+  flex: 1 1 0%;
+  background-color: var(--darker);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  color: var(--light);
+  font-size: 1.25rem;
+}
+
+#password-input::placeholder {
+  color: var(--gray);
+}
+
+#password-checker-submit {
+  color: var(--pink);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#password-checker-submit:hover {
+  opacity: 0.8;
+}
+
+#password-checker-submit:active {
+  opacity: 0.6;
+}
+
+main {
+  flex: 1 1 0%;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.rating-container {
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  color: var(--purple);
+}
+
+#password-generator-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#password-generator-container {
+  margin-top: 2rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: var(--light);
+}
+
+.rate-password-h2 {
+  margin-bottom: 1rem;
+}
+
+.generator-container {
+  padding: 1rem;
+  font-size: 1.25rem;
+  color: var(--teal);
+}

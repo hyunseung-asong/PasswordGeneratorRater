@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width", initial-scale=1>
+  <title>Password Project</title>
+  <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+  <header>
+    <h1>Password Rater & Generator</h1>
+  </header>
+  <main>
+    <h2 class="rate-password-h2">Rate a Password</h2>
+    <form id="password-checker-form">
+      <input 
+        type="text"
+        id="password-input"
+        placeholder="Enter Password"
+      >
+      <input
+        type="submit"
+        value="Check password strength"
+        id="password-checker-submit"
+      >
+    </form>
+    <div class="rating-container">
+      <p>placeholder: Your password is weak because it contains two dictionary words</p>
+    </div>
+    <div id="password-generator-container">
+      <h2>Generate a Password</h2>
+      <form id="password-generator-form">
+        <button>
+          Weak Password
+        </button>
+        <button>
+          Medium Password
+        </button>
+        <button>
+          Strong Password
+        </button>
+      </form>
+      <div class="generator-container">
+        <p>placeholder: Your password is weak because it contains two dictionary words</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
