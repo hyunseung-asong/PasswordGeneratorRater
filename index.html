@@ -27,16 +27,16 @@
     <div class="rating-container">
       <p>placeholder: Your password is weak because it contains two dictionary words</p>
     </div>
-    <div id="password-generator-container">
+    <div class="password-generator-container">
       <h2>Generate a Password</h2>
-      <form id="password-generator-form">
-        <button>
+      <form class="password-generator-form">
+        <button type="button" data-handler="btnWeak">
           Weak Password
         </button>
-        <button>
+        <button type="button" data-handler="btnMedium">
           Medium Password
         </button>
-        <button>
+        <button type="button" data-handler="btnStrong">
           Strong Password
         </button>
       </form>
@@ -45,5 +45,6 @@
       </div>
     </div>
   </main>
+  <script src="main.js"></script>
 </body>
 </html>
