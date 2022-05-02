@@ -49,7 +49,7 @@ button {
   font-size: 1.5rem;
   background-image: linear-gradient(to right, var(--purple), var(--teal));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* -webkit-text-fill-color: transparent; */
   cursor: pointer;
   transition: 0.4s;
   padding: .5rem;
@@ -75,7 +75,7 @@ button {
   font-weight: 700;
   background-image: linear-gradient(to right, var(--pink), var(--purple));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* -webkit-text-fill-color: transparent; */
   cursor: pointer;
   transition: 0.4s;
 }
@@ -102,7 +102,7 @@ main {
   color: var(--purple);
 }
 
-#password-generator-form {
+.password-generator-form {
   display: flex;
   justify-content: space-between;
   padding: 2rem 1rem;
@@ -111,9 +111,31 @@ main {
   margin: 0 auto;
 }
 
-#password-generator-container {
-  margin-top: 2rem;
+.password-generator-container {
+    margin-top: 2rem;
 }
+
+.password-generator-options {
+    margin-top: 1rem;
+}
+
+.password-generator-options ul {
+    list-style: none;
+}
+
+.password-generator-options ul li {
+    font-size: 1.5rem;
+    padding: .4rem 0;
+}
+
+input[type=checkbox]{
+    margin-right: 1rem;
+    transform: scale(1.5);
+    vertical-align: middle;
+    position: relative;
+    bottom: .125rem;
+}
+
 
 h2 {
   font-size: 2.5rem;

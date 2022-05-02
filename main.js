@@ -28,6 +28,7 @@ let reqSpecialChars = false;
 let pwLength = 8;
 let pwStrength = PasswordStrength.MEDIUM;
 
+
 // Mapping to functions.
 const buttonMap = {
   btnWeak: function (event) {
@@ -39,28 +40,62 @@ const buttonMap = {
     reqUppercase = false;
     reqDigits = false;
     reqSpecialChars = false;
+    if(document.getElementById("checkbox-upper").checked){
+        allowUppercase = true;
+    }
+    if(document.getElementById("checkbox-nums").checked){
+        allowDigits = true;
+    }
+    if(document.getElementById("checkbox-symbols").checked){
+        allowSpecialChars = true;
+    }
+    //add setting for words
     generatePassword(event.target);
   },
   btnMedium: function (event) {
     pwStrength = PasswordStrength.MEDIUM;
     allowLowercase = true;
-    allowUppercase = true;
-    allowDigits = true;
+    allowUppercase = false;
+    allowDigits = false;
     allowSpecialChars = false;
-    reqUppercase = true;
-    reqDigits = true;
+    reqUppercase = false;
+    reqDigits = false;
     reqSpecialChars = false;
+    if(document.getElementById("checkbox-upper").checked){
+        allowUppercase = true;
+        reqUppercase = true;
+    }
+    if(document.getElementById("checkbox-nums").checked){
+        allowDigits = true;
+        reqDigits = true;
+    }
+    if(document.getElementById("checkbox-symbols").checked){
+        allowSpecialChars = true;
+        reqSpecialChars = true;
+    }
     generatePassword(event.target);
   },
   btnStrong: function (event) {
     pwStrength = PasswordStrength.STRONG;
     allowLowercase = true;
-    allowUppercase = true;
-    allowDigits = true;
-    allowSpecialChars = true;
-    reqUppercase = true;
-    reqDigits = true;
-    reqSpecialChars = true;
+    allowUppercase = false;
+    allowDigits = false;
+    allowSpecialChars = false;
+    reqUppercase = false;
+    reqDigits = false;
+    reqSpecialChars = false;
+    if(document.getElementById("checkbox-upper").checked){
+        allowUppercase = true;
+        reqUppercase = true;
+    }
+    if(document.getElementById("checkbox-nums").checked){
+        allowDigits = true;
+        reqDigits = true;
+    }
+    if(document.getElementById("checkbox-symbols").checked){
+        allowSpecialChars = true;
+        reqSpecialChars = true;
+    }
     generatePassword(event.target);
   },
 }
@@ -94,6 +129,6 @@ function generatePassword(e) {
     (reqDigits && !pw.match(new RegExp("[" + digits + "]"))) ||
     (reqSpecialChars && !pw.match(new RegExp("[" + specialChars + "]")))
   )
-  alert(pw);
+  document.getElementById("pgen-result").innerHTML = pw;
   return pw;
 }
