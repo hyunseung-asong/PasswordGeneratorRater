@@ -51,10 +51,16 @@
         <button type="button" data-handler="btnReset">Reset</button>
       </form>
       <div class="generator-container">
-        <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p>
+        <form>
+            <input type="pgen-result" id="pgen-result" placeholder="Your password will appear here">
+            <button type="button" onclick="copy()" id="btnCopy">Copy</button>
+            <script>document.getElementById("pgen-result").disabled = true;</script>
+        </form>
+        <!-- <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p> -->
       </div>
     </div>
   </main>
-  <script src="bundle.js"></script>
+    <script src="wordlist.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

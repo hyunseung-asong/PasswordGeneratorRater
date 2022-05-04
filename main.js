@@ -17,9 +17,9 @@ const digits = "0123456789";
 const specialChars = "!@#$%^&*";
 const specialCharsExtended = "!\"#$%&'*+,./:;=?@\\^`|~-_[]{}()<>";
 // use randomWords to call functions from package
-const randomWords = require('random-words');
+//const randomWords = require('random-words');
 // wordList is the list of words inside package
-const wordList = randomWords.wordList;
+//const wordList = randomWords.wordList;
 
 
 // Settings
@@ -32,7 +32,7 @@ let reqUppercase = false;
 let reqDigits = false;
 let reqSpecialChars = false;
 let reqWords = false;
-let pwLength = 8; 
+let pwLength = 8;
 let pwStrength = PasswordStrength.MEDIUM;
 
 
@@ -89,7 +89,6 @@ const buttonClick = container && container.addEventListener('click', function(ev
 
 // Password generation.
 function generatePassword(e) {
-  console.log("generating pass");
   // default allow lower case
   let possTokens = lowercase;
   let pw = "";
@@ -101,6 +100,7 @@ function generatePassword(e) {
   reqDigits = false;
   allowSpecialChars = false;
   reqSpecialChars = false;
+  // check or user settings
   if(document.getElementById("checkbox-upper").checked){
     allowUppercase = true;
     reqUppercase = true;
@@ -134,7 +134,7 @@ function generatePassword(e) {
   let frequencyCheckedPassword = limitCharacterFrequency(possTokens, "aaaaaaaa");
   if(allowWords) frequencyCheckedPassword = appendWord(frequencyCheckedPassword);
 
-  document.getElementById("pgen-result").innerHTML = frequencyCheckedPassword;
+  document.getElementById("pgen-result").value = frequencyCheckedPassword;
   return frequencyCheckedPassword;
 }
 
@@ -195,7 +195,7 @@ function appendWord(pw){
     }
     else{
       //Append a random word of lenth 4 to end of password
-      let wordListMapped = wordList.filter(word => word.length === 4);   
+      let wordListMapped = wordList.filter(word => word.length === 4);
       pw+=wordListMapped[randInt(wordListMapped.length)];
     }
   }
@@ -209,8 +209,15 @@ function reset() {
   document.getElementById("checkbox-symbols").checked = false;
   document.getElementById("checkbox-words").checked = false;
   document.getElementById("user-word-input").value = "";
+  document.getElementById("pgen-result").value = "";
 }
 
+function copy() {
+  let copyText = document.getElementById("pgen-result").value;
+   navigator.clipboard.writeText(copyText);
+}
+
+//From random-words package
 function randInt(lessThan) {
   return Math.floor(Math.random() * lessThan);
 }
