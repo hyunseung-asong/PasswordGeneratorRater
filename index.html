@@ -35,8 +35,8 @@
               <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
               <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
               <li><input type="checkbox" id="checkbox-words">Include Words</li>
+              <input type="text" id="user-word-input" placeholder="enter word">
          </ul>
-         <button type="button" data-handler="btnReset">Reset</button>
       </div>
       <form class="password-generator-form">
         <button type="button" data-handler="btnWeak">
@@ -48,12 +48,13 @@
         <button type="button" data-handler="btnStrong">
           Strong Password
         </button>
+        <button type="button" data-handler="btnReset">Reset</button>
       </form>
       <div class="generator-container">
         <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p>
       </div>
     </div>
   </main>
-  <script src="main.js"></script>
+  <script src="bundle.js"></script>
 </body>
 </html>

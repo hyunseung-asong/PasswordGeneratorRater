@@ -16,16 +16,23 @@ const uppercase = lowercase.toUpperCase();
 const digits = "0123456789";
 const specialChars = "!@#$%^&*";
 const specialCharsExtended = "!\"#$%&'*+,./:;=?@\\^`|~-_[]{}()<>";
+// use randomWords to call functions from package
+const randomWords = require('random-words');
+// wordList is the list of words inside package
+const wordList = randomWords.wordList;
+
 
 // Settings
 let allowLowercase = true;
 let allowUppercase = false;
 let allowDigits = false;
 let allowSpecialChars = false;
+let allowWords = false;
 let reqUppercase = false;
 let reqDigits = false;
 let reqSpecialChars = false;
-let pwLength = 8;
+let reqWords = false;
+let pwLength = 8; 
 let pwStrength = PasswordStrength.MEDIUM;
 
 
@@ -66,7 +73,7 @@ const buttonMap = {
     generatePassword(event.target);
   },
   btnReset: function (event) {
-    console.log("reset");
+    reset();
   }
 }
 
@@ -82,6 +89,7 @@ const buttonClick = container && container.addEventListener('click', function(ev
 
 // Password generation.
 function generatePassword(e) {
+  console.log("generating pass");
   // default allow lower case
   let possTokens = lowercase;
   let pw = "";
@@ -89,20 +97,24 @@ function generatePassword(e) {
   allowUppercase = false;
   reqUppercase = false;
   allowDigits = false;
+  allowWords = false;
   reqDigits = false;
   allowSpecialChars = false;
   reqSpecialChars = false;
   if(document.getElementById("checkbox-upper").checked){
-      allowUppercase = true;
-      reqUppercase = true;
+    allowUppercase = true;
+    reqUppercase = true;
   }
   if(document.getElementById("checkbox-nums").checked){
-      allowDigits = true;
-      reqDigits = true;
+    allowDigits = true;
+    reqDigits = true;
   }
   if(document.getElementById("checkbox-symbols").checked){
-      allowSpecialChars = true;
-      reqSpecialChars = true;
+    allowSpecialChars = true;
+    reqSpecialChars = true;
+  }
+  if(document.getElementById("checkbox-words").checked){
+    allowWords = true;
   }
   // if (allowLowercase) possTokens = lowercase;
   if (allowUppercase) possTokens += uppercase;
@@ -120,6 +132,8 @@ function generatePassword(e) {
     (reqSpecialChars && !pw.match(new RegExp("[" + specialChars + "]")))
   )
   let frequencyCheckedPassword = limitCharacterFrequency(possTokens, "aaaaaaaa");
+  if(allowWords) frequencyCheckedPassword = appendWord(frequencyCheckedPassword);
+
   document.getElementById("pgen-result").innerHTML = frequencyCheckedPassword;
   return frequencyCheckedPassword;
 }
@@ -172,4 +186,31 @@ function limitCharacterFrequency(possibleTokens, givenPassword) {
         }
     }
     return password;
+}
+
+function appendWord(pw){
+  if(pwStrength = PasswordStrength.WEAK){
+    if(document.getElementById("user-word-input").value != ""){
+      pw+=document.getElementById("user-word-input").value;
+    }
+    else{
+      //Append a random word of lenth 4 to end of password
+      let wordListMapped = wordList.filter(word => word.length === 4);   
+      pw+=wordListMapped[randInt(wordListMapped.length)];
+    }
+  }
+  return pw;
+}
+
+function reset() {
+  document.getElementById("pgen-result").innerHTML = "Select the settings and then click one of the buttons";
+  document.getElementById("checkbox-upper").checked = false;
+  document.getElementById("checkbox-nums").checked = false;
+  document.getElementById("checkbox-symbols").checked = false;
+  document.getElementById("checkbox-words").checked = false;
+  document.getElementById("user-word-input").value = "";
+}
+
+function randInt(lessThan) {
+  return Math.floor(Math.random() * lessThan);
 }
