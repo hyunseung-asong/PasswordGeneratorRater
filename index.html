@@ -21,6 +21,14 @@
     </div>
     <div class="password-generator-container">
       <h2>Generate a Password</h2>
+      <div class="password-generator-options">
+          <ul>
+              <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
+              <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
+              <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
+              <li><input type="checkbox" id="checkbox-words">Include Words</li>
+         </ul>
+      </div>
       <form class="password-generator-form">
         <button type="button" data-handler="btnWeak">
           Weak Password
@@ -31,12 +39,19 @@
         <button type="button" data-handler="btnStrong">
           Strong Password
         </button>
+        <button type="button" data-handler="btnReset">Reset</button>
       </form>
       <div class="generator-container">
-        <p></p>
+        <form>
+            <input type="pgen-result" id="pgen-result" placeholder="Your password will appear here">
+            <button type="button" onclick="copy()" id="btnCopy">Copy</button>
+            <script>document.getElementById("pgen-result").disabled = true;</script>
+        </form>
+        <!-- <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p> -->
       </div>
     </div>
   </main>
+    <script src="wordlist.js"></script>
   <script src="main.js"></script>
   <script src="passwordrater.js"></script>
 </body>
