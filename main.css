@@ -39,7 +39,7 @@ header h1 {
   color: var(--pink);
 }
 
-#password-checker-form {
+#password-rater-form {
   display: flex;
 }
 
@@ -59,7 +59,7 @@ button {
   padding: .5rem;
 }
 
-#password-input {
+#password-rater-input {
   flex: 1 1 0%;
   background-color: var(--darker);
   padding: 1rem;
@@ -69,11 +69,11 @@ button {
   font-size: 1.25rem;
 }
 
-#password-input::placeholder {
+#password-rater-input::placeholder {
   color: var(--gray);
 }
 
-#password-checker-submit {
+#password-rater-submit {
   color: var(--pink);
   font-size: 1.25rem;
   font-weight: 700;
@@ -84,11 +84,11 @@ button {
   transition: 0.4s;
 }
 
-#password-checker-submit:hover {
+#password-rater-submit:hover {
   opacity: 0.8;
 }
 
-#password-checker-submit:active {
+#password-rater-submit:active {
   opacity: 0.6;
 }
 
@@ -144,6 +144,10 @@ main {
   /* margin-left: 1.8rem; */
   color: var(--light);
   font-size: 1.25rem;
+}
+
+.password-generator-checkbox-container {
+  color: var(--darkest);
 }
 
 input[type=checkbox]{

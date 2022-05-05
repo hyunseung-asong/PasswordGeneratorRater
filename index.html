@@ -14,6 +14,7 @@
   </header>
   <main>
     <h2 class="rate-password-h2">Rate a Password</h2>
+<<<<<<< HEAD
     <form id="password-checker-form" class="password-checker-form">
       <input
         type="text"
@@ -30,11 +31,32 @@
     </form>
     <div id="rating-container" class="rating-container">
       <p id="rating-msg" class="rating-msg">---</p>
+=======
+    <form id="password-rater-form">
+      <input
+        type="text"
+        id="password-rater-input"
+        placeholder="Enter Password"
+      >
+      <input
+        type="submit"
+        value="Check password strength"
+        id="password-rater-submit"
+      >
+    </form>
+    <div class="rating-container">
+      <p id="password-rater-output">Your password strength will appear here</p>
+>>>>>>> passwordrater
     </div>
     <div id="password-generator-container" class="password-generator-container">
       <h2>Generate a Password</h2>
+<<<<<<< HEAD
       <div id="password-generator-options" class="password-generator-options">
           <ul>
+=======
+      <div class="password-generator-options">
+          <ul class="password-generator-checkbox-container">
+>>>>>>> passwordrater
               <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
               <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
               <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
@@ -59,7 +81,6 @@
             <button type="button" onclick="copy()" id="btnCopy">Copy</button>
             <script>document.getElementById("pgen-result").disabled = true;</script>
         </form>
-        <!-- <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p> -->
       </div>
     </div>
   </main>
