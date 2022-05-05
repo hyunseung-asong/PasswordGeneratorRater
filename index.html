@@ -1,3 +1,5 @@
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,24 +14,32 @@
   </header>
   <main>
     <h2 class="rate-password-h2">Rate a Password</h2>
-    <form id="password-checker-form">
-      <input 
+    <form id="password-rater-form">
+      <input
         type="text"
-        id="password-input"
+        id="password-rater-input"
         placeholder="Enter Password"
       >
       <input
         type="submit"
         value="Check password strength"
-        id="password-checker-submit"
+        id="password-rater-submit"
       >
     </form>
     <div class="rating-container">
-      <p>placeholder: Your password is weak because it contains two dictionary words</p>
+      <p id="password-rater-output">---</p>
     </div>
-    <div class="password-generator-container">
+    <div id="password-generator-container" class="password-generator-container">
       <h2>Generate a Password</h2>
-      <form class="password-generator-form">
+      <div id="password-generator-options" class="password-generator-options">
+          <ul id="password-generator-checkbox-container" class="password-generator-checkbox-container">
+              <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
+              <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
+              <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
+              <li><input type="checkbox" id="checkbox-words">Include Words</li>
+         </ul>
+      </div>
+      <form id="password-generator-form" class="password-generator-form">
         <button type="button" data-handler="btnWeak">
           Weak Password
         </button>
@@ -39,12 +49,19 @@
         <button type="button" data-handler="btnStrong">
           Strong Password
         </button>
+        <button type="button" data-handler="btnReset">Reset</button>
       </form>
-      <div class="generator-container">
-        <p>placeholder: Your password is weak because it contains two dictionary words</p>
+      <div id="generator-container" class="generator-container">
+        <form>
+            <input type="pgen-result" id="pgen-result" placeholder="Your password will appear here">
+            <button type="button" onclick="copy()" id="btnCopy">Copy</button>
+            <script>document.getElementById("pgen-result").disabled = true;</script>
+        </form>
       </div>
     </div>
   </main>
+  <script src="wordlist.js"></script>
   <script src="main.js"></script>
+  <script src="passwordrater.js"></script>
 </body>
 </html>
