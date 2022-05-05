@@ -15,7 +15,6 @@ const lowercase = "abcdefghijklmnopqrstuvwxyz";
 const uppercase = lowercase.toUpperCase();
 const digits = "0123456789";
 const specialChars = "!@#$%^&*";
-const specialCharsExtended = "!\"#$%&'*+,./:;=?@\\^`|~-_[]{}()<>";
 
 // Settings
 let allowLowercase = true;
@@ -76,7 +75,7 @@ const buttonClick = container && container.addEventListener('click', function(ev
 })
 
 // Password generation.
-function generatePassword(e) {
+const generatePassword = async(e) => {
   let possTokens = "";
   let pw = "";
   if (allowLowercase) possTokens = possTokens + lowercase;

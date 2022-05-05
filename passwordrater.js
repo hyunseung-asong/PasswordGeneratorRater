@@ -1,4 +1,5 @@
-const fs = require('fs');
+/**
+const fs = require('browserify-fs');
 const readline = require('readline');
 
 const getWords = async() => {
@@ -19,27 +20,49 @@ const getWords = async() => {
   words = words.sort((a,b) => b.length - a.length); // sort words so longest words come first
   return words;
 }
+*/
+// Event listener.
+const submitBtn = document.querySelector('.password-checker-submit');
+submitBtn.addEventListener('click', function(event) {
+  const password = document.querySelector('.password-input').value;
+  checkPassword(event, password)
+});
 
-const checkPassword = async(password) => {
-  const availableChars = 52; // alphabetic
-  const words = await getWords();
+const checkPassword = async(e, pw) => {
+  let possTokens = 0;
+  if (pw.match(new RegExp("[" + lowercase + "]"))) possTokens += lowercase.length;
+  if (pw.match(new RegExp("[" + uppercase + "]"))) possTokens += uppercase.length;
+  if (pw.match(new RegExp("[" + digits + "]"))) possTokens += digits.length;
+  if (pw.match(new RegExp("[" + specialChars + "]"))) possTokens += specialChars.length;
+  
+  const numEnglishWords = 56000;
   let wordsFound = 0;
+  /**
+  const words = await getWords();
 
   words.forEach((word) => {
     while (password.includes(word)) {
       wordsFound++;
       password = password.replace(word, '');
-      console.log("Password contained a word!");
     }
   })
+  console.log("Password contains " + wordsFound + " words!");
+  */
 
-  const guesses = Math.pow(availableChars, wordsFound + password.length) / 2;
-  if (guesses < Math.pow(10, 6))
-    console.log("weak pass");
-  else if (guesses < Math.pow(10, 14))
-    console.log("medium pass");
-  else
-    console.log("strong pass");
+  // Calculate password complexity.
+  const possTokenPermutations = Math.pow(possTokens, pw.length);
+  const ptpStr = possTokenPermutations.toString();
+  let pow10Exp = ptpStr.length - 1;
+  if (ptpStr.includes("+")) pow10Exp = ptpStr.substring(ptpStr.indexOf("+") + 1);
+
+  // Print message.
+  let ratingMsg = "Your password complexity is at least 10^" + pow10Exp + "."; 
+  if (possTokenPermutations < Math.pow(10, 6)) ratingMsg = "WEAK: " + ratingMsg;
+  else if (possTokenPermutations < Math.pow(10, 14)) ratingMsg = "MEDIUM: " + ratingMsg;
+  else if (possTokenPermutations < Math.pow(10, 20)) ratingMsg = "STRONG: " + ratingMsg;
+  else if (possTokenPermutations >= Math.pow(10, 20)) ratingMsg = "VERY STRONG: " + ratingMsg;
+
+  // Update HTML with rating response.
+  const ratingMsgElement = document.querySelector('.rating-msg');
+  ratingMsgElement.innerHTML = ratingMsg;
 }
-
-checkPassword("hellohello");
