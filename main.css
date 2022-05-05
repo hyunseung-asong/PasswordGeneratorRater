@@ -10,7 +10,8 @@
   --aquamarine: #7fffd4;
   --green: #00fa9a;
   --yellow: #ffd700;
-  --red: #dc143c
+  --red: #dc143c;
+  --lightpink: #FFB6C1;
 }
 
 * {
@@ -65,7 +66,7 @@ button {
   padding: 1rem;
   border-radius: 1rem;
   margin-right: 1rem;
-  color: var(--light);
+  color: var(--lightpink);
   font-size: 1.25rem;
 }
 
@@ -142,12 +143,12 @@ main {
   padding: .4rem;
   border-radius: .3rem;
   /* margin-left: 1.8rem; */
-  color: var(--light);
-  font-size: 1.25rem;
+  color: var(--lightpink);
+  font-size: 1rem;
 }
 
 .password-generator-checkbox-container {
-  color: var(--darkest);
+  color: var(--lightpink);
 }
 
 input[type=checkbox]{
@@ -161,7 +162,7 @@ input[type=checkbox]{
 
 h2 {
   font-size: 2.5rem;
-  color: var(--light);
+  color: var(--aquamarine);
 }
 
 .rate-password-h2 {
@@ -184,7 +185,7 @@ h2 {
     background-color: var(--darker);
     padding: .4rem;
     border-radius: .1rem;
-    color: var(--light);
+    color: var(--lightpink);
     font-size: 1.25rem;
     width: 100%;
     border:none;

@@ -15,10 +15,6 @@ const lowercase = "abcdefghijklmnopqrstuvwxyz";
 const uppercase = lowercase.toUpperCase();
 const digits = "0123456789";
 const specialChars = "!@#$%^&*";
-<<<<<<< HEAD
-=======
-const specialCharsExtended = "!\"#$%&'*+,./:;=?@\\^`|~-_[]{}()<>";
->>>>>>> passwordrater
 
 // Settings
 let allowLowercase = true;
