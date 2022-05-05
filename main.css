@@ -142,6 +142,10 @@ main {
   font-size: 1.25rem;
 }
 
+.password-generator-checkbox-container {
+  color: var(--darkest);
+}
+
 input[type=checkbox]{
     margin-right: 1rem;
     transform: scale(1.5);

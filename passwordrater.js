@@ -2,13 +2,18 @@ const passwordRaterInput = document.getElementById('password-rater-input');
 const passwordRaterForm = document.getElementById('password-rater-form');
 const passwordRaterOutput = document.getElementById('password-rater-output');
 
-// On submission of form, do password checking logic
+// On submission of password rater form, do password checking logic
 passwordRaterForm.addEventListener('submit', e => {
   e.preventDefault();
+  setRatingColor("var(--purple)");
   passwordRaterOutput.innerHTML = checkPassword(passwordRaterInput.value);
 });
 
+// Check password strength & return a string containing password strength information
 const checkPassword = (pw) => {
+  if (pw.length == 0) return "Enter valid password";
+  if (containsWhitespace(pw)) return "No spaces allowed";
+
   let words = wordList                              // create a copy of wordList
   words = words.sort((a,b) => b.length - a.length); // sort words so longest words come first
   let passwordStrength = "";                        // final message to output to client
@@ -21,20 +26,18 @@ const checkPassword = (pw) => {
   words.forEach((word) => {
     while (pw.toLowerCase().includes(word)) {
       wordsFound++;
-      var regEx = new RegExp(word, "ig");
-      pw = pw.replace(regEx, '');
-      console.log("Password contained a word!");
+      var regEx = new RegExp(word, "i");  // ignores case
+      pw = pw.replace(regEx, '');         // replace word with empty string
+      console.log(pw);
     }
   })
 
-  // if password contains words & is weak/medium strength
-  // inform the user
+  // if password contains words & is weak/medium strength, add to final message
   if (wordsFound > 0) additionalMessage = `Your password contains ${wordsFound} word(s).`;
   
-  // number of guesses is equal to available chars (poss tokens) to the power of
-  // words found in password + the rest of the password
-  // all divided by 2, because it takes about half num of guesses to crack pass
-  const guesses = Math.pow(availableChars, pw.length - wordsFound) / 2;
+  // calculate the num of guesses to crack the password
+  const guesses = Math.pow(availableChars, pw.length) / 2;
+  // Determine password strength based on num guesses
   if (guesses < Math.pow(10, 6)) {
     passwordStrength = "Weak password";
     setRatingColor("red");
@@ -51,13 +54,22 @@ const checkPassword = (pw) => {
     passwordStrength = "Very strong password";
     setRatingColor("aquamarine");
   }
-  if (additionalMessage != null && passwordStrength != "Strong password") {
+  
+  // if additional message is present, add it to final message if not strong/very strong already
+  if (additionalMessage != null && passwordStrength != "Strong password" && passwordStrength != "Very strong password") {
     passwordStrength += ". " + additionalMessage;
   }
 
   return passwordStrength;
 }
 
+// Helper function for checking whitespace in password
+const containsWhitespace = (pw) => {
+  return /\s/.test(pw);
+}
+
+// Uses regex to check the variety of different characters in a password
+// Returns the number of possible tokens
 const checkComplexity = (pw) => {
   let possTokens = 0;
   if (pw.match(new RegExp("[" + lowercase + "]"))) possTokens += lowercase.length;
@@ -66,32 +78,9 @@ const checkComplexity = (pw) => {
   if (pw.match(new RegExp("[" + specialChars + "]"))) possTokens += specialChars.length;
 
   return possTokens;
-  // Calculate password complexity.
-  const possTokenPermutations = Math.pow(possTokens, pw.length);
-  const ptpStr = possTokenPermutations.toString();
-  let pow10Exp = ptpStr.length - 1;
-  if (ptpStr.includes("+")) pow10Exp = ptpStr.substring(ptpStr.indexOf("+") + 1);
-
-  // Print message.
-  let ratingMsg = "Your password complexity is at least 10^" + pow10Exp + ".";
-  if (possTokenPermutations < Math.pow(10, 6)) {
-    ratingMsg = "WEAK: " + ratingMsg;
-    setRatingColor("red");
-  }
-  else if (possTokenPermutations < Math.pow(10, 14)) {
-    ratingMsg = "MEDIUM: " + ratingMsg;
-    setRatingColor("yellow");
-  }
-  else if (possTokenPermutations < Math.pow(10, 20)) {
-    ratingMsg = "STRONG: " + ratingMsg;
-    setRatingColor("green");
-  }
-  else if (possTokenPermutations >= Math.pow(10, 20)) {
-    ratingMsg = "VERY STRONG: " + ratingMsg;
-    setRatingColor("aquamarine");
-  }
 }
 
+// Helper function to change color of output text
 const setRatingColor = (color) => {
   passwordRaterOutput.style.color = color;
 }

@@ -16,11 +16,6 @@ const uppercase = lowercase.toUpperCase();
 const digits = "0123456789";
 const specialChars = "!@#$%^&*";
 const specialCharsExtended = "!\"#$%&'*+,./:;=?@\\^`|~-_[]{}()<>";
-// use randomWords to call functions from package
-//const randomWords = require('random-words');
-// wordList is the list of words inside package
-//const wordList = randomWords.wordList;
-
 
 // Settings
 let allowLowercase = true;
@@ -42,37 +37,18 @@ const buttonMap = {
     pwStrength = PasswordStrength.WEAK;
     pwLength = 6;
     allowLowercase = true;
-    // allowUppercase = false;
-    // allowDigits = false;
-    // allowSpecialChars = false;
-    // reqUppercase = false;
-    // reqDigits = false;
-    // reqSpecialChars = false;
-    //add setting for words
     generatePassword(event.target);
   },
   btnMedium: function (event) {
     pwStrength = PasswordStrength.MEDIUM;
     pwLength = 10;
     allowLowercase = true;
-    // allowUppercase = false;
-    // allowDigits = false;
-    // allowSpecialChars = false;
-    // reqUppercase = false;
-    // reqDigits = false;
-    // reqSpecialChars = false;
     generatePassword(event.target);
   },
   btnStrong: function (event) {
     pwStrength = PasswordStrength.STRONG;
     pwLength = 20;
     allowLowercase = true;
-    // allowUppercase = false;
-    // allowDigits = false;
-    // allowSpecialChars = false;
-    // reqUppercase = false;
-    // reqDigits = false;
-    // reqSpecialChars = false;
     generatePassword(event.target);
   },
   btnReset: function (event) {
@@ -120,10 +96,7 @@ function generatePassword(e) {
   if(document.getElementById("checkbox-words").checked){
     allowWords = true;
   }
-//   if(document.getElementById("user-word-input").value != ""){
-//     userInputWord = document.getElementById("user-word-input").value;
-//   }
-  // if (allowLowercase) possTokens = lowercase;
+
   if (allowUppercase) possTokens += uppercase;
   if (allowDigits) possTokens += digits;
   if (allowSpecialChars) possTokens += specialChars;
@@ -179,8 +152,6 @@ function generatePassword(e) {
     (reqDigits && !pw.match(new RegExp("[" + digits + "]"))) ||
     (reqSpecialChars && !pw.match(new RegExp("[" + specialChars + "]")))
   )
-//   let frequencyCheckedPassword = limitCharacterFrequency(possTokens, "aaaaaaaa");
-//   if(allowWords) frequencyCheckedPassword = appendWord(frequencyCheckedPassword);
 
   document.getElementById("pgen-result").value = pw;
   return pw;
@@ -191,6 +162,7 @@ function limitCharacterFrequency(possibleTokens, givenPassword) {
     let uniform = false;
     let variability = password.length / 4; // 4 is temp number that adjusts variability of password
     let freq = new Map();
+
     // initialize all available characters' frequency to 0
     for (let c of possibleTokens) {
         freq.set(c, 0);

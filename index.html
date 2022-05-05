@@ -25,12 +25,12 @@
       >
     </form>
     <div class="rating-container">
-      <p id="password-rater-output">placeholder: Your password is weak because it contains two dictionary words</p>
+      <p id="password-rater-output">Your password strength will appear here</p>
     </div>
     <div class="password-generator-container">
       <h2>Generate a Password</h2>
       <div class="password-generator-options">
-          <ul>
+          <ul class="password-generator-checkbox-container">
               <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
               <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
               <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
@@ -55,7 +55,6 @@
             <button type="button" onclick="copy()" id="btnCopy">Copy</button>
             <script>document.getElementById("pgen-result").disabled = true;</script>
         </form>
-        <!-- <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p> -->
       </div>
     </div>
   </main>
