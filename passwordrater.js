@@ -1,3 +1,10 @@
+/*
+  1. Checks for empty/invalid password input
+  2. Calculates password complexity (variety of characters)
+  3. Calculates number of possible permutations/2 to be number of guesses needed to crack password
+  4. Outputs message to user & changes color based on password strength rating
+*/
+
 const passwordRaterInput = document.getElementById('password-rater-input');
 const passwordRaterForm = document.getElementById('password-rater-form');
 const passwordRaterOutput = document.getElementById('password-rater-output');
