@@ -22,19 +22,19 @@ const getWords = async() => {
 }
 */
 // Event listener.
-const submitBtn = document.querySelector('.password-checker-submit');
-submitBtn.addEventListener('click', function(event) {
+const ratingBtn = document.querySelector('.password-checker-submit');
+ratingBtn.addEventListener('click', function (event) {
   const password = document.querySelector('.password-input').value;
   checkPassword(event, password)
 });
 
-const checkPassword = async(e, pw) => {
+const checkPassword = async (e, pw) => {
   let possTokens = 0;
   if (pw.match(new RegExp("[" + lowercase + "]"))) possTokens += lowercase.length;
   if (pw.match(new RegExp("[" + uppercase + "]"))) possTokens += uppercase.length;
   if (pw.match(new RegExp("[" + digits + "]"))) possTokens += digits.length;
   if (pw.match(new RegExp("[" + specialChars + "]"))) possTokens += specialChars.length;
-  
+
   const numEnglishWords = 56000;
   let wordsFound = 0;
   /**
@@ -56,13 +56,30 @@ const checkPassword = async(e, pw) => {
   if (ptpStr.includes("+")) pow10Exp = ptpStr.substring(ptpStr.indexOf("+") + 1);
 
   // Print message.
-  let ratingMsg = "Your password complexity is at least 10^" + pow10Exp + "."; 
-  if (possTokenPermutations < Math.pow(10, 6)) ratingMsg = "WEAK: " + ratingMsg;
-  else if (possTokenPermutations < Math.pow(10, 14)) ratingMsg = "MEDIUM: " + ratingMsg;
-  else if (possTokenPermutations < Math.pow(10, 20)) ratingMsg = "STRONG: " + ratingMsg;
-  else if (possTokenPermutations >= Math.pow(10, 20)) ratingMsg = "VERY STRONG: " + ratingMsg;
+  let ratingMsg = "Your password complexity is at least 10^" + pow10Exp + ".";
+  if (possTokenPermutations < Math.pow(10, 6)) {
+    ratingMsg = "WEAK: " + ratingMsg;
+    setRatingColor("red");
+  }
+  else if (possTokenPermutations < Math.pow(10, 14)) {
+    ratingMsg = "MEDIUM: " + ratingMsg;
+    setRatingColor("yellow");
+  }
+  else if (possTokenPermutations < Math.pow(10, 20)) {
+    ratingMsg = "STRONG: " + ratingMsg;
+    setRatingColor("green");
+  }
+  else if (possTokenPermutations >= Math.pow(10, 20)) {
+    ratingMsg = "VERY STRONG: " + ratingMsg;
+    setRatingColor("aquamarine");
+  }
 
   // Update HTML with rating response.
   const ratingMsgElement = document.querySelector('.rating-msg');
   ratingMsgElement.innerHTML = ratingMsg;
+}
+
+const setRatingColor = async (color) => {
+  var element = document.querySelector('.rating-container');
+  element.style.color = "var(--" + color + ")";
 }

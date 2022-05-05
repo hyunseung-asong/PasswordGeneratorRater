@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width", initial-scale=1>
+  <meta name="viewport" content="width=device-width" , initial-scale=1>
   <title>Password Project</title>
-  <link rel="stylesheet" href="main.css"/>
+  <link rel="stylesheet" href="main.css" />
 </head>
+
 <body>
   <header>
     <h1>Password Rater & Generator</h1>
   </header>
   <main>
-    <h2 class="rate-password-h2">Rate a Password</h2>
-    <form class="password-checker-form">
-      <input type="text" class="password-input" placeholder="Enter Password">
-      <input type="button" class="password-checker-submit" value="Check Password Strength">
-    </form>
-    <div class="rating-container">
-      <p class="rating-msg"></p>
-    </div>
-    <div class="password-generator-container">
-      <h2>Generate a Password</h2>
-      <div class="password-generator-options">
-          <ul>
-              <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
-              <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
-              <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
-              <li><input type="checkbox" id="checkbox-words">Include Words</li>
-         </ul>
+    </div class="password-rater-container" id="password-rater-container">
+      <h2 class="rate-password-h2">Rate a Password</h2>
+      <form class="password-checker-form" id="password-checker-form">
+        <input 
+          type="text" 
+          class="password-input" 
+          id="password-input" 
+          placeholder="Enter Password">
+        <button 
+          type="button" 
+          class="password-checker-submit" 
+          id="password-checker-submit"
+          value="Check Password Strength">
+      </form>
+      <div class="rating-container" id="rating-container">
+        <p class="rating-msg"></p>
       </div>
-      <form class="password-generator-form">
+    </div>
+    <div class="password-generator-container" id="password-generator-container">
+      <h2>Generate a Password</h2>
+      <div class="password-generator-options" id="password-generator-options">
+        <ul>
+          <li><input type="checkbox" id="checkbox-upper">Include Uppercase</li>
+          <li><input type="checkbox" id="checkbox-nums">Include Numbers</li>
+          <li><input type="checkbox" id="checkbox-symbols">Include Symbols</li>
+          <li><input type="checkbox" id="checkbox-words">Include Words</li>
+        </ul>
+      </div>
+      <form class="password-generator-form" id="password-generator-form">
         <button type="button" data-handler="btnWeak">
           Weak Password
         </button>
@@ -41,18 +53,18 @@
         </button>
         <button type="button" data-handler="btnReset">Reset</button>
       </form>
-      <div class="generator-container">
+      <div class="generator-container" id="generator-container">
         <form>
-            <input type="pgen-result" id="pgen-result" placeholder="Your password will appear here">
-            <button type="button" onclick="copy()" id="btnCopy">Copy</button>
-            <script>document.getElementById("pgen-result").disabled = true;</script>
+          <input type="pgen-result" id="pgen-result" placeholder="Your password will appear here">
+          <button type="button" onclick="copy()" id="btnCopy">Copy</button>
+          <script>document.getElementById("pgen-result").disabled = true;</script>
         </form>
-        <!-- <p id="pgen-result">placeholder: Your password is weak because it contains two dictionary words</p> -->
       </div>
     </div>
   </main>
-    <script src="wordlist.js"></script>
+  <script src="wordlist.js"></script>
   <script src="main.js"></script>
   <script src="passwordrater.js"></script>
 </body>
+
 </html>
