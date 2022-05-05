@@ -12,20 +12,20 @@
   </header>
   <main>
     <h2 class="rate-password-h2">Rate a Password</h2>
-    <form id="password-checker-form">
+    <form id="password-rater-form">
       <input
         type="text"
-        id="password-input"
+        id="password-rater-input"
         placeholder="Enter Password"
       >
       <input
         type="submit"
         value="Check password strength"
-        id="password-checker-submit"
+        id="password-rater-submit"
       >
     </form>
     <div class="rating-container">
-      <p>placeholder: Your password is weak because it contains two dictionary words</p>
+      <p id="password-rater-output">placeholder: Your password is weak because it contains two dictionary words</p>
     </div>
     <div class="password-generator-container">
       <h2>Generate a Password</h2>
@@ -59,7 +59,8 @@
       </div>
     </div>
   </main>
-    <script src="wordlist.js"></script>
+  <script src="wordlist.js"></script>
   <script src="main.js"></script>
+  <script src="passwordrater.js"></script>
 </body>
 </html>
